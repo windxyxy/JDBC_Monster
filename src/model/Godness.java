@@ -2,9 +2,11 @@ package model;
 
 import java.util.Date;
 
-/*
- * 实体类
- * */
+/**
+ * @author 作者 : Monster
+ * @version 创建时间：2016年11月7日 下午2:12:12
+ * 类说明：实体类
+ */
 public class Godness {
 	private Integer id;
 	private String user_name;

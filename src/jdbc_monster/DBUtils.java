@@ -3,10 +3,12 @@ package jdbc_monster;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * @author 作者 : Monster
+ * @version 创建时间：2016年11月7日 下午1:47:10
+ * 类说明：连接数据库工具类
+ */
 
-/*
- * 连接数据库工具类
- * */
 public class DBUtils {
 	private static final String URL = "jdbc:sqlserver://localhost:1433;DatabaseName=JDBC_Monster";
 	private static final String USER = "Monster";

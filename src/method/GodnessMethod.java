@@ -5,16 +5,20 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import jdbc_monster.DBUtils;
 import model.Godness;
-
+/**
+ * @author 作者 : Monster
+ * @version 创建时间：2016年11月7日 下午3:40:50
+ * 类说明：数据库的增删改查函数
+ */
 public class GodnessMethod {
 	/*
+	 * 模型层
 	 * 新增
 	 */
 	public void addGodness(Godness godness) throws SQLException {
@@ -113,7 +117,7 @@ public class GodnessMethod {
 	/*
 	 * 查询(条件查询多条记录)
 	 */
-	public List<Godness> queryGodness1(List<Map<String, Object>> params) throws Exception {
+	public List<Godness> queryGodness(List<Map<String, Object>> params) throws Exception {
 		Connection conn = DBUtils.getConnection();
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from godness where 1=1 ");
