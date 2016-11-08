@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import jdbc_monster.DBUtils;
 import model.Godness;
@@ -83,9 +84,53 @@ public class GodnessMethod {
 	 */
 	public List<Godness> queryGodness() throws Exception {
 		Connection conn = DBUtils.getConnection();
-		// 3、操作数据库
-		Statement stat = conn.createStatement();
-		ResultSet result = stat.executeQuery("select * from godness");
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from godness");
+		PreparedStatement ppst = conn.prepareStatement(sb.toString());
+		ResultSet result = ppst.executeQuery();
+		
+		List<Godness> listGod = new ArrayList<>();
+		Godness godness = null;
+		while (result.next()) {
+			godness = new Godness();
+			godness.setId(result.getInt("id"));
+			godness.setUser_name(result.getString("user_name"));
+			godness.setAge(result.getInt("age"));
+			godness.setSex(result.getInt("sex"));
+			godness.setMobile(result.getInt("mobile"));
+			godness.setBirthday(result.getDate("birthday"));
+			godness.setCreate_user(result.getString("create_user"));
+			godness.setCreate_date(result.getDate("create_date"));
+			godness.setUpdate_user(result.getString("update_user"));
+			godness.setUpdate_date(result.getDate("update_date"));
+			godness.setIsdel(result.getInt("isdel"));
+			listGod.add(godness);
+		}
+
+		return listGod;
+	}
+	
+	/*
+	 * 查询(条件查询多条记录)
+	 */
+	public List<Godness> queryGodness1(List<Map<String, Object>> params) throws Exception {
+		Connection conn = DBUtils.getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from godness where 1=1 ");
+		if(params != null&&params.size()>0){
+			for (int i = 0; i < params.size(); i++) {
+				Map<String, Object> map = params.get(i);
+				/*
+				 * 这相当于是    user_name = 小美(name,relationship,value分别对应)
+				 * */
+				sb.append("and"+" "+map.get("name")+" "+map.get("relationship")+" "+map.get("value")+" ");
+			}
+		}
+		System.out.println("SQL语句："+sb.toString());//打印查询语句
+		
+		PreparedStatement ppst = conn.prepareStatement(sb.toString());
+		ResultSet result = ppst.executeQuery();
+		
 		List<Godness> listGod = new ArrayList<>();
 		Godness godness = null;
 		while (result.next()) {

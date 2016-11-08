@@ -1,7 +1,10 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import method.GodnessMethod;
 import model.Godness;
@@ -10,7 +13,20 @@ public class GodnessAction {
 	
 	public static void main(String[] args) throws Exception {
 		
-		queryMode();//查询多条记录
+//		queryMode();//查询多条记录
+		
+		List<Map<String, Object>> list =new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", "user_name");
+		map.put("relationship", "like");
+		map.put("value", "'%小%'");
+		list.add(map);
+		map = new HashMap<>();
+		map.put("name", "age");
+		map.put("relationship", ">");
+		map.put("value", "'24'");
+		list.add(map);
+		queryMode1(list);//查询多条记录
 		
 //		queryOneMode();//查询单条记录
 //		
@@ -25,9 +41,19 @@ public class GodnessAction {
 	/*
 	 * 测试查询功能
 	 * */
-	private static void queryMode() throws Exception{
+	public static void queryMode() throws Exception{
 		GodnessMethod gm = new GodnessMethod();
 		List<Godness> queryGodness = gm.queryGodness();
+		for (Godness godness : queryGodness) {
+			System.out.println(godness.toString());
+		}
+	}
+	/*
+	 * 测试查询功能
+	 * */
+	private static void queryMode1(List<Map<String, Object>> params) throws Exception{
+		GodnessMethod gm = new GodnessMethod();
+		List<Godness> queryGodness = gm.queryGodness1(params);
 		for (Godness godness : queryGodness) {
 			System.out.println(godness.toString());
 		}
