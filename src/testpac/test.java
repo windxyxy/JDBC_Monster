@@ -34,6 +34,12 @@ public class test {
 		map.put("relationship", "like");
 		map.put("value", "'%ะก%'");
 		param.add(map);
+		Map<String, Object> map1 = new HashMap<>();
+		map1.put("name", "age");
+		map1.put("relationship", "=");
+		map1.put("value", "25");
+		param.add(map1);
+		
 		List<Godness> lists = gsAction.queryMode(param);
 		for (Godness godness : lists) {
 			System.out.println(godness.getUser_name()+"\n"+godness.getMobile());
@@ -51,7 +57,6 @@ public class test {
 		 */
 		 Godness godness = new Godness();
 		 godness.setUser_name("ะกวเ");
-		 godness.setSex(2);
 		 godness.setAge(0);
 		 godness.setBirthday(new Date());
 		 godness.setMobile(5426548);
@@ -59,7 +64,6 @@ public class test {
 		 godness.setCreate_user("Monster");
 		 godness.setUpdate_user("Monster");
 		 godness.setUpdate_date(new Date());
-		 godness.setIsdel(2);
 		 godness.setId(6);
 		 gsAction.addMode(godness);
 

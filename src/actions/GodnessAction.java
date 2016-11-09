@@ -45,7 +45,8 @@ public class GodnessAction {
 	 */
 	public void addMode(Godness godness) throws Exception {
 		GodnessMethod gm = new GodnessMethod();
-
+		godness.setSex(2);
+		godness.setIsdel(2);
 		gm.addGodness(godness);
 
 	}
